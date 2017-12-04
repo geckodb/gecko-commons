@@ -16,9 +16,6 @@ include(
     "cmake/FindAPR.cmake"
 )
 
-#find_package(APR     REQUIRED)
-
-
 include_directories(
         "include"
         ${APR_INCLUDE_DIR}
@@ -59,7 +56,7 @@ set(SOURCE_FILES
         src/gecko-commons/gs_timer.c
         src/gecko-commons/gs_utils.c
 
-        test.c include/gecko-commons/gecko-commons.h
+        include/gecko-commons/gecko-commons.h
         include/gecko-commons/stdinc.h)
 
 add_executable(
