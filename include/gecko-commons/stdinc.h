@@ -142,6 +142,10 @@ typedef MD5_CTX gs_checksum_context_t;
 #define GS_CONNECT(sig, slot)                                                                                          \
     gs_error_if((gs_dispatcher_connect(system->dispatcher, sig, slot) != GS_SUCCESS), err_connect_failed);
 
+#define GS_EMPTY_CHAR_BUFFER(name, size) \
+    char name[size];                     \
+    memset(name, 0, size);               \
+
 // ---------------------------------------------------------------------------------------------------------------------
 // I N L I N E   F U N C T I O N S
 // ---------------------------------------------------------------------------------------------------------------------
