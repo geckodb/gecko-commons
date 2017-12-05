@@ -103,9 +103,9 @@ void gs_trace_print(FILE *file);
 
 #define GS_DEBUG(msg, args...)                                                                                         \
     {                                                                                                                  \
-        /*fprintf(stderr, "# DEBUG: ");       */                                                                           \
-        /*fprintf(stderr, msg, args);         */                                                                           \
-        /*fprintf(stderr, "\n");                */                                                                         \
+        fprintf(stderr, "# DEBUG: ");                                                                                  \
+        fprintf(stderr, msg, args);                                                                                    \
+        fprintf(stderr, "\n");                                                                                         \
     }
 
 #define GS_DEBUG2(msg)                                                                                                 \
