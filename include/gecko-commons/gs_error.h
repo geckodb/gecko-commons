@@ -63,6 +63,7 @@ typedef enum {
 #define GS_FALSE            false
 #define GS_REJECTED         6
 #define GS_NOTFOUND         7
+#define GS_INTERNALERR      8
 
 typedef int gs_status_t;
 
