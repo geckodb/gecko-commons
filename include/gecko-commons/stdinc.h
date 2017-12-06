@@ -79,6 +79,8 @@ typedef uint32_t   u32;
 typedef uint64_t   u64;
 typedef int64_t    s64;
 
+typedef unsigned char BYTE;
+
 enum gs_tuplet_format_e {
     TF_NSM  = 1,
     TF_DSM  = 2,
