@@ -57,6 +57,12 @@ typedef enum {
 #define require_not_zero(value)                                                                                        \
     REQUIRE(value > 0, to_string(value) " is not allowed to be zero")
 
+#define RETURN_FAILED_IF(condition)                                                                                    \
+{                                                                                                                      \
+    if ((condition))                                                                                                   \
+        return GS_FAILED;                                                                                              \
+}
+
 #define GS_REQUIRE_MALLOC(size)                                                                                           \
     ({                                                                                                                 \
         void *block = malloc(size);                                                                                    \
