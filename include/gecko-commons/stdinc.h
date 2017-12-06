@@ -85,20 +85,21 @@ typedef struct gs_string_t gs_string_t; /* forwarding */
 typedef struct gs_object_t gs_object_t; /* forwarding */
 typedef struct gs_array_t gs_array_t; /* forwarding */
 
-typedef uint8_t     u8_t;
-typedef uint16_t    u16_t;
-typedef uint32_t    u32_t;
-typedef uint64_t    u64_t;
-typedef int8_t      s8_t;
-typedef int16_t     s16_t;
-typedef int32_t     s32_t;
-typedef int64_t     s64_t;
-typedef float       float32_t;
-typedef double      float64_t;
+typedef _Atomic uint8_t     u8_t;
+typedef _Atomic uint16_t    u16_t;
+typedef _Atomic uint32_t    u32_t;
+typedef _Atomic uint64_t    u64_t;
+typedef _Atomic int8_t      s8_t;
+typedef _Atomic int16_t     s16_t;
+typedef _Atomic int32_t     s32_t;
+typedef _Atomic int64_t     s64_t;
+typedef _Atomic float       float32_t;
+typedef _Atomic double      float64_t;
+typedef _Atomic bool        boolean_t;
 typedef gs_string_t string_t;
 typedef gs_object_t object_t;
 typedef gs_array_t  array_t;
-typedef bool        boolean_t;
+
 
 enum gs_tuplet_format_e {
     TF_NSM  = 1,
