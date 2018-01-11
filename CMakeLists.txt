@@ -57,7 +57,7 @@ set(SOURCE_FILES
         src/gecko-commons/gs_utils.c
 
         include/gecko-commons/gecko-commons.h
-        include/gecko-commons/stdinc.h include/gecko-commons/gs_string.h src/gecko-commons/gs_string.c include/gecko-commons/relative_ptr.h)
+        include/gecko-commons/stdinc.h include/gecko-commons/gs_string.h src/gecko-commons/gs_string.c include/gecko-commons/relative_ptr.h include/gecko-commons/gs_memblock.h)
 
 add_executable(
     gecko
