@@ -19,49 +19,25 @@
 #include <stdatomic.h>
 
 // ---------------------------------------------------------------------------------------------------------------------
-// D A T A T Y P E S
-// ---------------------------------------------------------------------------------------------------------------------
-
-typedef struct gs_spinlock_t
-{
-    volatile atomic_int exclusion;
-    volatile atomic_int skip;
-} gs_spinlock_t;
-
-// ---------------------------------------------------------------------------------------------------------------------
 // I N T E R F A C E  I M P L E M E N T A T I O N
 // ---------------------------------------------------------------------------------------------------------------------
 
-GS_DECLARE(gs_status_t) gs_spinlock_create(volatile gs_spinlock_t **spinlock)
+GS_DECLARE(gs_status_t) gs_spinlock_create(gs_spinlock_t *spinlock)
 {
-    volatile gs_spinlock_t *result = GS_REQUIRE_MALLOC(sizeof(gs_spinlock_t));
-    atomic_init(&result->skip, false);
-    *spinlock = result;
-
+    atomic_flag_clear(&spinlock->lock);
     return GS_SUCCESS;
 }
 
-GS_DECLARE(gs_status_t) gs_spinlock_dispose(volatile gs_spinlock_t **spinlock_ptr)
+GS_DECLARE(gs_status_t) gs_spinlock_lock(gs_spinlock_t *spinlock)
 {
-    GS_REQUIRE_NONNULL(spinlock_ptr)
-    GS_REQUIRE_NONNULL(*spinlock_ptr)
-    free ((void *) *spinlock_ptr);
-    *spinlock_ptr = NULL;
+    while(atomic_flag_test_and_set(&spinlock->lock))
+        ;
     return GS_SUCCESS;
 }
 
-GS_DECLARE(gs_status_t) gs_spinlock_lock(volatile gs_spinlock_t *spinlock)
+GS_DECLARE(gs_status_t) gs_spinlock_unlock(gs_spinlock_t *spinlock)
 {
-    atomic_init(&spinlock->exclusion, true);
-    while (atomic_load(&spinlock->exclusion) && !atomic_load(&spinlock->skip))
-            ;
-    return GS_SUCCESS;
-}
-
-GS_DECLARE(gs_status_t) gs_spinlock_unlock(volatile gs_spinlock_t *spinlock)
-{
-    atomic_store(&spinlock->exclusion, false);
-    atomic_store(&spinlock->skip, true);
+    atomic_flag_clear(&spinlock->lock);
     return GS_SUCCESS;
 }
 

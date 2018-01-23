@@ -18,12 +18,16 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 #include <gecko-commons/stdinc.h>
+#include <stdatomic.h>
 
 // ---------------------------------------------------------------------------------------------------------------------
 // T Y P E   F O R D W A R D   D E C L A R A T I O N S
 // ---------------------------------------------------------------------------------------------------------------------
 
-typedef struct gs_spinlock_t gs_spinlock_t;
+typedef struct gs_spinlock_t
+{
+    atomic_flag lock;
+} gs_spinlock_t;
 
 // ---------------------------------------------------------------------------------------------------------------------
 // I N T E R F A C E   F U N C T I O N S
@@ -31,12 +35,10 @@ typedef struct gs_spinlock_t gs_spinlock_t;
 
 __BEGIN_DECLS
 
-GS_DECLARE(gs_status_t) gs_spinlock_create(volatile gs_spinlock_t **spinlock);
+GS_DECLARE(gs_status_t) gs_spinlock_create(gs_spinlock_t *spinlock);
 
-GS_DECLARE(gs_status_t) gs_spinlock_dispose(volatile gs_spinlock_t **spinlock);
+GS_DECLARE(gs_status_t) gs_spinlock_lock(gs_spinlock_t *spinlock);
 
-GS_DECLARE(gs_status_t) gs_spinlock_lock(volatile gs_spinlock_t *spinlock);
-
-GS_DECLARE(gs_status_t) gs_spinlock_unlock(volatile gs_spinlock_t *spinlock);
+GS_DECLARE(gs_status_t) gs_spinlock_unlock(gs_spinlock_t *spinlock);
 
 __END_DECLS
