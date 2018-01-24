@@ -26,7 +26,7 @@
 #define GS_SYSTEM_TIME_MS()                                             \
 ({                                                                      \
     struct timeval timeval;                                             \
-    gettimeofday(&timeval);                                             \
+    gettimeofday(&timeval, NULL);                                       \
     long int elpased = timeval.tv_sec * 1000 + timeval.tv_usec / 1000;  \
     elpased;                                                            \
 })
