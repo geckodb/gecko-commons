@@ -18,4 +18,9 @@
 #include <gecko-commons/gs_timer.h>
 #include <gecko-commons/gs_utils.h>
 
+#define GS_OPTIONAL(expr, statement) \
+{                                    \
+   if(expr) { statement; }           \
+}
+
 #endif
