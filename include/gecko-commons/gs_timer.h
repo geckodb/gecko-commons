@@ -24,7 +24,7 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 typedef struct gs_timer_t {
-    clock_t start, stop;
+    long long start, stop;
 } gs_timer_t;
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -33,4 +33,4 @@ typedef struct gs_timer_t {
 
 void gs_timer_start(gs_timer_t *timer);
 void gs_timer_stop(gs_timer_t *timer);
-double gs_timer_diff_ms(gs_timer_t *timer);
+long long gs_timer_diff_ms(gs_timer_t *timer);

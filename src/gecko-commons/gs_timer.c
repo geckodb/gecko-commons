@@ -16,25 +16,33 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 #include <gecko-commons/gs_timer.h>
+#include <sys/time.h>
 
 // ---------------------------------------------------------------------------------------------------------------------
 // I N T E R F A C E  I M P L E M E N T A T I O N
 // ---------------------------------------------------------------------------------------------------------------------
 
+static inline long long wallclock_current_ms(void) {
+    struct timeval tv;
+
+    gettimeofday(&tv,NULL);
+    return (((long long)tv.tv_sec) * 1000)+(tv.tv_usec / 1000);
+}
+
 void gs_timer_start(gs_timer_t *timer)
 {
     assert (timer);
-    timer->start = clock();
+    timer->start = wallclock_current_ms();
 }
 
 void gs_timer_stop(gs_timer_t *timer)
 {
     assert (timer);
-    timer->stop = clock();
+    timer->stop = wallclock_current_ms();
 }
 
-double gs_timer_diff_ms(gs_timer_t *timer)
+long long gs_timer_diff_ms(gs_timer_t *timer)
 {
     assert (timer);
-    return (double)(timer->stop - timer->start) / CLOCKS_PER_SEC;
+    return (timer->stop - timer->start);
 }
