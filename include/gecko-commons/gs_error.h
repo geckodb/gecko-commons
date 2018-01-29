@@ -67,6 +67,7 @@ typedef enum {
 #define GS_WRITE_FAILED     9
 #define GS_CORRUPTED       10
 #define GS_LOAD_FAILED     11
+#define GS_WASTE           12
 
 typedef int gs_status_t;
 
