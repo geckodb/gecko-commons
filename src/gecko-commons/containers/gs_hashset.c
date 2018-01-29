@@ -58,7 +58,7 @@ void hashset_add(gs_hashset_t *set, const void *data, size_t num_elems, gs_comp_
         const void *key = data + (idx * element_size);
         const void *value = gs_hash_get(set->dict, key, element_size);
         if (value == NULL) {
-            gs_hash_set(set->dict, key, element_size, NULL);
+            gs_hash_set(set->dict, key, element_size, key);
             gs_vec_pushback(set->vec, 1, key);
         }
     }
