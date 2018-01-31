@@ -31,4 +31,7 @@
     elpased;                                                            \
 })
 
+#define GS_LIKELY(x)      __builtin_expect(!!(x), 1)
+#define GS_UNLIKELY(x)    __builtin_expect(!!(x), 0)
+
 #endif
