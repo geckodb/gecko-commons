@@ -22,7 +22,7 @@
 // I N T E R F A C E  I M P L E M E N T A T I O N
 // ---------------------------------------------------------------------------------------------------------------------
 
-static inline long long wallclock_current_ms(void) {
+timestamp_t gs_timer_now(void) {
     struct timeval tv;
 
     gettimeofday(&tv,NULL);
@@ -32,16 +32,16 @@ static inline long long wallclock_current_ms(void) {
 void gs_timer_start(gs_timer_t *timer)
 {
     assert (timer);
-    timer->start = wallclock_current_ms();
+    timer->start = gs_timer_now();
 }
 
 void gs_timer_stop(gs_timer_t *timer)
 {
     assert (timer);
-    timer->stop = wallclock_current_ms();
+    timer->stop = gs_timer_now();
 }
 
-long long gs_timer_diff_ms(gs_timer_t *timer)
+timestamp_t gs_timer_diff_ms(gs_timer_t *timer)
 {
     assert (timer);
     return (timer->stop - timer->start);

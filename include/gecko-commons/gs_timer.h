@@ -23,8 +23,10 @@
 // D A T A   T Y P E S
 // ---------------------------------------------------------------------------------------------------------------------
 
+typedef uint64_t timestamp_t;
+
 typedef struct gs_timer_t {
-    long long start, stop;
+    timestamp_t start, stop;
 } gs_timer_t;
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -33,4 +35,6 @@ typedef struct gs_timer_t {
 
 void gs_timer_start(gs_timer_t *timer);
 void gs_timer_stop(gs_timer_t *timer);
-long long gs_timer_diff_ms(gs_timer_t *timer);
+timestamp_t gs_timer_diff_ms(gs_timer_t *timer);
+
+timestamp_t gs_timer_now(void);
