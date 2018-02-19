@@ -370,9 +370,9 @@ void *gs_vec_bsearch(gs_vec_t *vec, const void *needle, gs_comp_t sort_comp, gs_
     } else {
         gs_vec_sort(vec, sort_comp);
 
-        size_t lower = 0;
-        size_t upper = vec->num_elements - 1;
-        size_t mid;
+        int64_t lower = 0;
+        int64_t upper = vec->num_elements - 1;
+        int64_t mid;
 
         while(lower <= upper) {
             mid = (lower + upper) / 2;
